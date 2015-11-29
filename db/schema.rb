@@ -16,6 +16,18 @@ ActiveRecord::Schema.define(version: 20151129103817) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "car_features", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "car_features_models", id: false, force: :cascade do |t|
+    t.integer "car_model_id",   null: false
+    t.integer "car_feature_id", null: false
+  end
+
   create_table "car_manufacturers", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -24,6 +36,7 @@ ActiveRecord::Schema.define(version: 20151129103817) do
 
   create_table "car_models", force: :cascade do |t|
     t.string   "name"
+    t.string   "year"
     t.integer  "car_manufacturer_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
