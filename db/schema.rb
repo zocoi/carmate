@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20151129103817) do
   end
 
   add_index "car_models", ["car_manufacturer_id"], name: "index_car_models_on_car_manufacturer_id", using: :btree
+  add_index "car_models", ["name", "year"], name: "index_car_models_on_name_and_year", unique: true, using: :btree
 
   add_foreign_key "car_models", "car_manufacturers"
 end
